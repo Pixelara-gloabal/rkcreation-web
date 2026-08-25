@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Royal Color Palette */
+  --color-maroon-dark: #3F000B;
+  --color-maroon: #680516;
+  --color-maroon-light: #8E0A20;
+  
+  --color-gold-deep: #9E7D23;
+  --color-gold: #D4AF37;
+  --color-gold-light: #F3E5AB;
+  --color-gold-shimmer: #FFF2B2;
+  
+  --color-emerald-deep: #062315;
+  --color-emerald: #0B3B24;
+  --color-emerald-light: #16653F;
+  --color-emerald-accent: #25D366; /* WhatsApp brand */
+
+  --color-cream-bg: #FAF6F0;
+  --color-cream-card: #FFFFFF;
+  --color-cream-alt: #F3EBDD;
+
+  --color-text-dark: #1A1A1A;
+  --color-text-muted: #666666;
+  --color-text-light: #999999;
+  --color-text-gold: #B38F24;
+
+  /* Elevation & Shadows */
+  --shadow-sm: 0 2px 8px rgba(104, 5, 22, 0.06);
+  --shadow-md: 0 8px 24px rgba(104, 5, 22, 0.10);
+  --shadow-lg: 0 16px 40px rgba(104, 5, 22, 0.15);
+  --shadow-gold: 0 8px 25px rgba(212, 175, 55, 0.28);
+  --shadow-gold-hover: 0 12px 30px rgba(212, 175, 55, 0.40);
+
+  /* Fonts */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--color-cream-bg);
+  color: var(--color-text-dark);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-color: var(--color-cream-bg);
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Custom Gold Gradient Text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FFF0A8 0%, #F5CE62 40%, #E0A825 80%, #C48E12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.text-gold-light {
+  color: #FCE8A2;
+}
+
+.text-maroon-gradient {
+  background: linear-gradient(135deg, #9C1128 0%, #520010 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F0EAE1;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B38F24;
+}
+
+/* Container */
+.rk-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 1400px) {
+  .rk-container {
+    max-width: 1360px;
+  }
+}
+
+/* Luxury Card & Glassmorphism */
+.rk-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.20);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.rk-card:hover {
+  border-color: rgba(212, 175, 55, 0.50);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.rk-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.rk-glass-dark {
+  background: rgba(43, 0, 8, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: #FFF;
+}
+
+/* Luxury Button Styles */
+.rk-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #780016 0%, #50000E 100%);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 4px 15px rgba(104, 5, 22, 0.25);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  text-decoration: none;
+}
+
+.rk-btn-primary:hover {
+  background: linear-gradient(135deg, #8E0A20 0%, #680516 100%);
+  border-color: #D4AF37;
+  box-shadow: 0 6px 20px rgba(104, 5, 22, 0.35);
+  transform: translateY(-2px);
+}
+
+.rk-btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #D4AF37 0%, #C59B27 100%);
+  color: #1A1A1A;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #FFF2B2;
+  box-shadow: var(--shadow-gold);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  text-decoration: none;
+}
+
+.rk-btn-gold:hover {
+  background: linear-gradient(135deg, #E5C358 0%, #D4AF37 100%);
+  box-shadow: var(--shadow-gold-hover);
+  transform: translateY(-2px);
+}
+
+.rk-btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.35rem;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.30);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  text-decoration: none;
+}
+
+.rk-btn-whatsapp:hover {
+  background: linear-gradient(135deg, #2EE070 0%, #189E8F 100%);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  transform: translateY(-2px);
+}
+
+.rk-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-maroon-dark);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--color-maroon);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  text-decoration: none;
+}
+
+.rk-btn-outline:hover {
+  background: rgba(104, 5, 22, 0.06);
+  border-color: var(--color-maroon-light);
+  transform: translateY(-2px);
+}
+
+/* Regal Badge Chips */
+.rk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+}
+
+.rk-badge-gold {
+  background: linear-gradient(135deg, #FFF6D6 0%, #F5DEB3 100%);
+  color: #7A5B0B;
+  border: 1px solid #D4AF37;
+}
+
+.rk-badge-maroon {
+  background: linear-gradient(135deg, #780016 0%, #4A000E 100%);
+  color: #FFF;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+}
+
+.rk-badge-emerald {
+  background: #E8F7EE;
+  color: #0E5C32;
+  border: 1px solid #25D366;
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite;
+}
+
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-gold {
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0) 0%, rgba(212, 175, 55, 0.4) 50%, rgba(212, 175, 55, 0) 100%);
+  background-size: 200% 100%;
+  animation: goldShimmer 3s infinite;
+}
+
+/* Regal Divider */
+.regal-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.regal-divider::before,
+.regal-divider::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+}
+
+/* Mobile & Responsive Utilities */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Safe area inset support for mobile */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+.mb-safe {
+  margin-bottom: env(safe-area-inset-bottom, 16px);
+}
+
+/* Touch feedback for mobile buttons */
+@media (hover: none) and (pointer: coarse) {
+  .touch-press:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+  
+  .rk-container {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  /* Optimize font sizing on smaller phones */
+  html {
+    font-size: 15px;
+  }
+}
